@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { sample_foods } from "./data";
+import { sample_foods, sample_tags } from "./data";
 
 const app = express();
 
@@ -26,6 +26,22 @@ app.get("/api/foods/search/:searchTerm", (req, res) => {
     food.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  res.send(foods);
+});
+
+app.get("/api/tags", (req, res) => {
+  res.send(sample_tags);
+});
+
+app.get("/api/foods/tag/:tagName", (req, res) => {
+  const tagName = req.params.tagName;
+  const foods = sample_foods.filter((food) => food.tags?.includes(tagName));
+  res.send(foods);
+});
+
+app.get("/api/foods/:foodId", (req, res) => {
+  const foodId = req.params.foodId;
+  const foods = sample_foods.filter((food) => food.id == foodId);
   res.send(foods);
 });
 
