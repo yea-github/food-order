@@ -28,8 +28,8 @@ export class CartPageComponent implements OnInit {
     this.cartService.changeQuantity(cartItem.food.id, quantity);
   }
 
-  isVisible(): boolean {
-    if (!this.cart || !this.cart.items.length) return true;
-    return false;
+  isCartAvailable(): boolean {
+    if (!this.cart || !this.cart.items.length) return false;
+    return true;
   }
 }

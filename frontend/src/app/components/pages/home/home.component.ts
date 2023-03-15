@@ -24,4 +24,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  isFoodAvailable(): boolean {
+    if (!this.foods || !this.foods.length) return false;
+    return true;
+  }
 }
