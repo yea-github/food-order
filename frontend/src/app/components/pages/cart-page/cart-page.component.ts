@@ -27,4 +27,9 @@ export class CartPageComponent implements OnInit {
     const quantity = parseInt(quantityInString);
     this.cartService.changeQuantity(cartItem.food.id, quantity);
   }
+
+  isVisible(): boolean {
+    if (!this.cart || !this.cart.items.length) return true;
+    return false;
+  }
 }
