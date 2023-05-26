@@ -29,6 +29,17 @@ app.get("/api/foods/search/:searchTerm", (req, res) => {
   res.send(foods);
 });
 
+// sample test method
+app.get("/api/foods/search-item/:searchTerm", (req, res) => {
+  const searchTerm = req.params.searchTerm;
+
+  const foods = sample_foods.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  res.send(foods);
+});
+
 app.get("/api/tags", (req, res) => {
   res.send(sample_tags);
 });
