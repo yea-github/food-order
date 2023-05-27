@@ -35,7 +35,8 @@ export class FoodPageComponent implements OnInit {
   }
 
   isFoodAvailable(): boolean {
-    if (!this.food.id) return false;
+    console.log(this.food);
+    if (!this.food) return false;
     return true;
   }
 }

@@ -76,5 +76,4 @@ export const sample_tags: any[] = [
   { name: "Hamburger", count: 1 },
   { name: "Fry", count: 1 },
   { name: "Soup", count: 1 },
-  { name: "Drinks", count: 7 },
 ];
