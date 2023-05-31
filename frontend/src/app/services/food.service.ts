@@ -62,7 +62,7 @@ export class FoodService {
     return this.getAll().find((food) => food.id == foodId) ?? new Food();
   }*/
 
-  getFoodById(foodId: string): Observable<Food> {
-    return this.http.get<Food>(FOODS_BY_ID_URL + foodId);
+  getFoodById(foodId: string): Observable<Food[]> {
+    return this.http.get<Food[]>(FOODS_BY_ID_URL + foodId);
   }
 }

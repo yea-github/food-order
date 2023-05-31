@@ -10,7 +10,7 @@ import { Food } from 'src/app/shared/models/Food';
   styleUrls: ['./food-page.component.css'],
 })
 export class FoodPageComponent implements OnInit {
-  food!: Food;
+  food!: Food[];
 
   constructor(
     activatedRoute: ActivatedRoute,
@@ -19,7 +19,7 @@ export class FoodPageComponent implements OnInit {
     private router: Router
   ) {
     activatedRoute.params.subscribe((params) => {
-      /* if (params.id) this.food = foodService.getFoodById(params.id);*/
+      /*if (params.id) this.food = foodService.getFoodById(params.id);*/
       if (params.id)
         foodService.getFoodById(params.id).subscribe((serverFood) => {
           this.food = serverFood;
@@ -30,13 +30,11 @@ export class FoodPageComponent implements OnInit {
   ngOnInit(): void {}
 
   addToCart() {
-    this.cartService.addToCart(this.food);
+    this.cartService.addToCart(this.food[0]);
     this.router.navigateByUrl('/cart-page');
   }
 
   isFoodAvailable(): boolean {
-    console.log(this.food);
-    if (!this.food) return false;
-    return true;
+    return !(this.food === undefined || this.food.length === 0);
   }
 }
