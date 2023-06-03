@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
-import { sample_foods, sample_tags } from "./data";
+import { sample_foods, sample_tags, sample_users } from "./data";
+import jwt from "jsonwebtoken";
 
 const app = express();
+
+app.use(express.json());
 
 app.use(
   cors({
@@ -55,6 +58,31 @@ app.get("/api/foods/:foodId", (req, res) => {
   const foods = sample_foods.filter((food) => food.id == foodId);
   res.send(foods);
 });
+
+app.post("/api/users/login", (req, res) => {
+  // Destructuring assignment
+  const { email, password } = req.body;
+  const user = sample_users.find(
+    (retUser) => retUser.email === email && retUser.password === password
+  );
+
+  if (user) {
+    res.send(generateTokenResponse(user));
+  } else {
+    res.status(400).send("User name or password is incorrect");
+  }
+});
+
+const generateTokenResponse = (user: any) => {
+  const tokenStr = jwt.sign(
+    { user: user.email, isAdmin: user.isAdmin },
+    "SomeRandomText",
+    { expiresIn: "30d" }
+  );
+
+  user.token = tokenStr;
+  return user;
+};
 
 const port = 5000;
 
