@@ -14,7 +14,7 @@ export class DefaultButtonComponent implements OnInit {
   text: string = 'Submit';
 
   @Input()
-  bgColor = '#e729292';
+  bgColor = '#204cb3';
 
   @Input()
   color = 'white';
