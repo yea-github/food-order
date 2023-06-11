@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'input-container',
@@ -10,7 +10,11 @@ export class InputContainerComponent implements OnInit {
   label!: string;
   @Input()
   bgColor!: 'white';
+
+  constructor() {
+  }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 }
