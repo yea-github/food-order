@@ -58,4 +58,35 @@ router.get("/:foodId", (req, res) => {
     res.send(foods);
 });
 
+router.get("/tags", asyncHandler(
+    async (req, res) => {
+        const tags = await FoodModel.aggregate([
+            {
+                $unwind: '$tags'
+            },
+            {
+                $group: {
+                    _id: '$tags',
+                    count: {$sum: 1}
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    name: '$_id',
+                    count: '$count'
+                }
+            }
+        ]).sort({count: -1})
+
+        const all = {
+            name: 'All',
+            count: await FoodModel.countDocuments()
+        }
+
+        tags.unshift(all);
+        res.send(tags);
+    }
+))
+
 export default router;
