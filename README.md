@@ -25,3 +25,7 @@
 - Not found page component
 - Input validation component for Login page
 
+### Screenshots
+
+![Screenshot](./screenshots/login_page.jpg)
+
